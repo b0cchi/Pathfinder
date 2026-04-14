@@ -1,4 +1,29 @@
-# Pathfinder 要件定義
+# Pathfinder
+
+Pathfinder は、特定のフォーマットを持たない Web サイトからイベント開催場所の住所を特定・抽出するためのエージェント指向プロジェクトです。LLM を判断エンジン、ブラウザ操作を実行レイヤーとして使い、HTML・画像・PDF を横断して住所候補を探索します。
+
+## 概要
+- 不定形な Web サイトから住所を探索することを目的としたプロジェクトです。
+- LangGraph を使って探索フローを構成します。
+- 現状は LangGraph の最小動作確認用サンプルとして [hello_graph.py](hello_graph.py) を含みます。
+
+## セットアップ
+```bash
+pip install -r requirements.txt
+```
+
+## 実行
+```bash
+python3 hello_graph.py
+```
+
+想定される出力例:
+
+```python
+{'message': 'Start -> Hello from Pathfinder!'}
+```
+
+## 要件定義
 
 ## 1. 目的
 特定のフォーマットを持たないWebサイト（PDF、画像、多階層構造を含む）から、イベントの開催場所である「住所」を、人間と同等の探索プロセスで特定・抽出する。
