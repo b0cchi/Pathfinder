@@ -77,6 +77,17 @@ python3 hello_graph.py
 }
 ```
 
+### 5.3 サンプル
+
+[サイト内に住所なし]
+https://www.ai-gakkai.or.jp/jsai2026/
+
+[たくさん会場がある]
+https://site2.convention.co.jp/112jsge/
+
+[TOPではなく会場のページに住所がある]
+https://www.congre.co.jp/130jos/index.html
+
 ## 6. 非機能要件
 - 拡張性: サイトのレイアウト変更に影響を受けないよう、ハードコーディングされたXPath等は極力使用しない。
 - 安全性: ローカルLLMを使用し、外部へのAPI通信を最小限に抑える（プライバシー保護）。

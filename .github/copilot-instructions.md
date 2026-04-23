@@ -45,24 +45,26 @@
 
 ```tree
 project-root/
+├── .devcontainer/
 ├── .github/
 │   └── copilot-instructions.md
-├── src/ or my_agent/          # メインコード（LangGraph公式推奨）
-│   ├── init.py
-│   ├── state.py               # State定義
-│   ├── nodes/                 # 各node関数
-│   ├── tools/                 # カスタムツール
-│   ├── prompts/               # PromptTemplate集
-│   ├── graphs/                # 複数グラフの場合
-│   ├── agent.py               # graph.compile() とエントリポイント
-│   └── utils/                 # 共通ユーティリティ
-├── tests/
-│   ├── unit/                  # node/tool単体テスト
-│   └── integration/           # グラフ全体テスト（langgraph.checkpoint使用）
-├── langgraph.json             # デプロイ用（LangGraph Cloud / LangSmith）
-├── pyproject.toml
 ├── .env.example
-└── README.md
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── src/
+    ├── __init__.py
+    ├── config.py              # 設定・環境変数（Ollama, MCP など）
+    ├── logger.py              # ロギング設定（RotatingFileHandler）
+    ├── main.py                # エントリポイント（asyncio.run）
+    ├── agent/
+    │   ├── __init__.py
+    │   ├── graph.py           # StateGraph 構築・compile()
+    │   ├── message_utils.py   # メッセージ加工ユーティリティ
+    │   ├── nodes.py           # ノード関数（make_call_model など）
+    │   └── state.py           # State 定義（PathfinderState）
+    └── services/
+        └── pathfinder_service.py  # MCP 接続・グラフ実行・結果パース
 ```
 
 
