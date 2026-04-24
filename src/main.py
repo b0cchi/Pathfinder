@@ -1,20 +1,18 @@
-import asyncio
-import traceback
-import json
-from services.pathfinder_service import run_pathfinder
-from logger import logger
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from api.routes.pathfinder import router as pathfinder_router
 
-async def main():
-    try:
-        result = await run_pathfinder("https://www.congre.co.jp/130jos/index.html")
-        logger.info("\n" + "=" * 60)
-        logger.info("最終回答")
-        logger.info("=" * 60)
-        logger.info(json.dumps(result, ensure_ascii=False, indent=2))
-        logger.info("=" * 60)
+app = FastAPI(
+    title="Pathfinder API",
+    description="ブラウザエージェントによる会場情報抽出API",
+    version="0.1.0",
+)
 
-    except Exception:
-        logger.error("CRITICAL ERROR CAUGHT:\n%s", traceback.format_exc())
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # WARNING: 開発中は全許可、本番では絞る
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+app.include_router(pathfinder_router)
